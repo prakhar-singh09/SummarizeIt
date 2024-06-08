@@ -1,4 +1,4 @@
-import React ,{ useContext } from "react";
+import React , { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import alertContext from "../context/Alert/alertContext";
 import logo from "./assets/github-mark.svg"; 
@@ -20,7 +20,7 @@ export const Navbar = () => {
       <div className="container-fluid">
         {/* Logo */}
         <Link className="navbar-brand mx-2" to="/">
-          NoteGen
+          SummarizeIt
         </Link>
 
       
@@ -46,14 +46,19 @@ export const Navbar = () => {
               Home
             </Link>
 
-            {/* Notes (only if user is authenticated) */}
+            {/* Summaries (only if user is authenticated) */}
             {localStorage.getItem('token') && <Link className={`nav-link  ${location.pathname === '/notes' ? "active" : ""}`} to="/notes">
-              Notes
+             Generate Summary
+            </Link>}
+          
+            {/* Summaries (only if user is authenticated) */}
+            {localStorage.getItem('token') && <Link className={`nav-link  ${location.pathname === '/Mynotes' ? "active" : ""}`} to="/Mynotes">
+             My Summaries
             </Link>}
 
             {/* About us */}
             <Link className={`nav-link  ${location.pathname === '/about' ? "active" : ""}`} to="/about">
-              About us
+              About
             </Link>
 
           </div>

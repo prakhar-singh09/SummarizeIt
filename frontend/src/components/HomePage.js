@@ -37,14 +37,15 @@ const Home = () => {
                         <img className="img-fluid " src={homeimg} alt='home' />
                     </div>
 
-                    <div className="col-md-6 d-flex flex-column justify-content-center">
-                        <div className="px-5 py-3 align-middle">
-                            <h1 className='display-3 ' style={{ fontWeight: "revert-layer" }}>NoteGen</h1>
-                            <h3>An AI Enabled Note  <span style={{ color: "darkred", fontWeight: "bold" }}>Generation App</span> </h3>
+                    <div className="col-md-7 my- 3 d-flex flex-column justify-content-center">
+                        <div className="px-5 py-3 my-3 align-middle">
+                            <h1 className='display-3 my-3 ' style={{ fontWeight: "revert-layer" }}>SummarizeIt📝</h1>
+                            <h3>An AI-Powered Summary <span style={{ color: "darkred", fontWeight: "bold" }}> Generation App</span> </h3>
                             <p>
                                 {" "}
-                          Experience a secure, AI-driven online platform that seamlessly manages your notes and information. 
-                          Create, edit, upload, and delete with ease, free from any interruptions.                   
+                                Introducing AI-Powered Platform that extracts
+                                summaries seamlessly from web URLs or manual input, into concise summaries, which 
+                                users can easily save for future reference and use.
                            </p>
                         </div>
 
@@ -59,7 +60,7 @@ const Home = () => {
 
                         {/* Show Create New Note button only if the user is authenticated */}
                         {localStorage.getItem('token') && <div className="px-5 py-2">
-                            <Link className="btn btn-lg btn-outline-primary me-3 my-2" to="/notes" role="button" >Create New Note</Link>
+                            <Link className="btn btn-lg btn-outline-primary me-3 my-2" to="/notes" role="button" >Generate Summary✨</Link>
                         </div>
                         }
                     </div>

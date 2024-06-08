@@ -20,7 +20,7 @@ const NoteItem = (props) => {
                     <div className="card-header">
                         <div className="d-flex align-items-center">
                             {/* Display the note's title */}
-                            <h5 className="card-title me-auto">{note.title}</h5>
+                            <h5 style={{fontWeight:"bold",color:"darkred"}} className="card-title me-auto">{note.title}</h5>
 
                             {/* Button to update the note */}
                             <i className="fa-solid fa-pen-to-square mx-1 p-2" onClick={() => openNoteUpdateModal(note)} />
@@ -34,7 +34,6 @@ const NoteItem = (props) => {
                     </div>
                     <div className="card-body">
                         {/* Display the note's tag */}
-                        <p>{note.tag}</p>
                         {/* Display the note's description */}
                         <p className="card-text">
                             {note.description}

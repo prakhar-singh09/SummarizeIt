@@ -1,7 +1,6 @@
 import React ,{ useContext, useEffect, useRef, useState } from "react";
 import NoteContext from "../context/Notes/noteContext";
 import alertContext from "../context/Alert/alertContext";
-import AddNote from "./AddNote";
 import Noteitem from "./Noteitem";
 import { useNavigate } from "react-router-dom";
 import nonoteimg from './assets/nonote.svg'
@@ -50,18 +49,15 @@ const Notes = () => {
 
     return (
         <>
-            {/* Component to add a new note*/}
-            <AddNote />
-
             {/* Rendering all noteitems */}
             <div className="container container-fluid ">
-                <h2 className="mb-5" style={{ fontWeight: "Bold" }}>Your <span style={{ color: "darkred", fontWeight: "Bold" }}> Notes </span></h2>
+                <h2 className="my-5 mb-5" style={{ fontWeight: "Bold" }}>Your <span style={{ color: "darkred", fontWeight: "Bold" }}> Summaries </span></h2>
 
                 {/* Checking if there are no notes */}
                 {notes.length === 0 ? (
                     <div style={{ display: "flex", alignItems: "center" }}>
                         <img style={{ width: "15%", marginRight: "1rem" }} src={nonoteimg} alt="no-notes-to-show" />
-                        <h3 style={{ fontSize: "1.5rem", fontWeight: "bold", color: "#333" }}>Add Your First Note :)</h3>
+                        <h3 style={{ fontSize: "1.5rem", fontWeight: "bold", color: "#333" }}>Add Your First Summary :)</h3>
                     </div>
                 ) : (
                     <div className="card-body">
@@ -98,7 +94,7 @@ const Notes = () => {
                     <div className="modal-content">
                         <div className="modal-header">
                             <h5 className="modal-title" id="staticBackdropLabel">
-                                <div className="display-6" style={{ fontWeight: "bold" }}>Edit Note</div>
+                                <div className="display-6" style={{ fontWeight: "bold" }}>Edit Summary</div>
                             </h5>
                             <button
                                 type="button"
@@ -122,19 +118,7 @@ const Notes = () => {
                                         Title
                                     </label>
                                 </div>
-                                <div className="my-3 material-textfield">
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        id="etag"
-                                        name="etag"
-                                        value={note.etag}
-                                        onChange={onChange}
-                                    />
-                                    <label htmlFor="tag" className="form-label">
-                                        Tag
-                                    </label>
-                                </div>
+                               
                                 <div className="my-3 material-textfield">
                                     <input
                                         type="text"
@@ -145,7 +129,7 @@ const Notes = () => {
                                         onChange={onChange}
                                     />
                                     <label htmlFor="description" className="form-label">
-                                        Description
+                                        Summary
                                     </label>
                                 </div>
                             </form>
@@ -160,7 +144,7 @@ const Notes = () => {
                                 Close
                             </button>
                             <button disabled={note.etitle.length < 3 || note.edescription.length < 5} type="button" className="btn btn-primary" onClick={updateNoteOnBackend}>
-                                Update Note
+                                Update Summary
                             </button>
                         </div>
                     </div>

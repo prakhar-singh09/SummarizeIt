@@ -1,17 +1,12 @@
 const connectToMongo = require('./db');
 const express = require('express');
-const cors = require('cors');
-const {authRoute} = require('./routes/auth');
-const {noteRoute} = require('./routes/notes');
-require('dotenv').config()
-const{ OpenAI } = require('openai');
-const os = require("os");
+const { OpenAI } = require('openai');
 
-const apiKey = process.env.OPENAI_API_KEY;
+const cors = require('cors');
+require('dotenv').config()
+
 connectToMongo();
-const openai = new OpenAI({
-    apiKey: apiKey, // This is the default and can be omitted
-  });
+
 
 const app = express();
 
@@ -19,23 +14,24 @@ app.use(cors());
 
 app.use(express.json());
 
+const apiKey = process.env.OPENAI_API_KEY;
+const openai = new OpenAI({
+    apiKey: apiKey, // This is the default and can be omitted
+  });
 
-const total = os.cpus().length;
-console.log(total);
 
 app.use('/api/auth',require('./routes/auth'));
 app.use('/api/notes',require('./routes/notes'));
 
 
-  app.post('/generate-description', async (req, res) => {
-    const { title } = req.body;
-  
+
+app.post('/generate-summary',async (req, res) => {
+    const { text } = req.body;
     try {
-      console.log('Received request with title:', title);
       const response = await openai.chat.completions.create({
         temperature: 0.8,
         max_tokens: 100,
-        messages: [{ role: 'user', content: `Generate content with title: "${title}"` }],
+        messages: [{ role: 'user', content: `Generate summary with text: "${text}"` }],
         model: 'gpt-3.5-turbo',
       });
   
@@ -45,9 +41,8 @@ app.use('/api/notes',require('./routes/notes'));
       console.error('Error generating description:', error);
       res.status(500).json({ error: 'Internal Server Error' });
     }
-});
-
-
+  });
+  
 if (process.env.PORT) {
     app.listen(process.env.PORT, () => {
         console.log(`Listening on port http://localhost:${process.env.PORT}`);

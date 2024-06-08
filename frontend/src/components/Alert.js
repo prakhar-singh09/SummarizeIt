@@ -3,8 +3,8 @@ import alertContext from '../context/Alert/alertContext';
 
 function Alert(props) {
     // Get the alert data from the alertContext
-    const { alert } = useContext(alertContext);
-
+    const { alert } = useContext(alertContext);        
+                                                       
     // Function to capitalize the first letter of a word
     const capitalize = (word) => {
         const lower = word.toLowerCase();

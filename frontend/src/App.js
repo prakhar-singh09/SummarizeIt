@@ -6,6 +6,7 @@ import './App.css';
 import Navbar from './components/Nav-bar';
 import HomePage from './components/HomePage';
 import Notes from './components/Notes';
+import AddNote from './components/AddNote';
 import About from './components/About';
 import Login from './components/Login';
 import Signup from './components/Signup'
@@ -24,7 +25,8 @@ function App() {
       <Alert/>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/Notes" element={<Notes />} />
+        <Route path="/Notes" element={<AddNote/>} />
+        <Route path="/MyNotes" element={<Notes/>} />
         <Route path="/About" element={<About />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/Signup" element={<Signup />} />        
