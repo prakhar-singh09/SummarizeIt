@@ -71,7 +71,7 @@ export const Navbar = () => {
           </div>}
 
           {!localStorage.getItem('token') && <div className="d-flex ms-auto me-3">
-            <Link to="https://github.com/prakhar-singh09/NoteGen" target="_blank">
+            <Link to="https://github.com/prakhar-singh09/Summarizeit" target="_blank">
             <img src={logo} alt="Brand Logo" style={{ width: "40px", height: "auto" }} />
           </Link>
         </div>}
