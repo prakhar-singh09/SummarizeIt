@@ -225,3 +225,12 @@ Contributions are welcome! Feel free to submit issues or pull requests.
 
 ### License
 This project is licensed under the MIT License.
+
+
+# 👨‍💻Maintainer
+
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/prakhar-singh09"><img src="https://avatars.githubusercontent.com/u/92270107?v=4" width="100px;" alt=""/><br /><sub><b>Prakhar Singh</b></sub></a><br /></td>
+  </tr>
+</table>
