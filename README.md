@@ -13,10 +13,8 @@ Introducing AI-Powered Platform that extracts summaries seamlessly from web URLs
 - A content summarization App utilizing the MERN stack and GenAI to deliver efficient and accurate summaries.
 - Dual functionality for summarizing content either via URLs or manual text input.
 - Designed and developed a comprehensive CRUD system to store, retrieve, update, and delete generated summaries, ensuring easy management and accessibility of summarized content.
-- Utilizes MongoDB for scalable and flexible data storage.
-- Express.js backend for handling API requests.
-- Node.js for server-side runtime, ensuring smooth performance.
 - JWT for secure and seamless Authentication and Authurization.
+- Google OAuth Login for seamless Authentication and Authurization.
 
 ## Getting Started
 
