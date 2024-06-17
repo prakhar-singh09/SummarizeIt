@@ -18,15 +18,14 @@ const Notes = () => {
     useEffect(() => {
         // Checking if user is logged in by checking for a token in local storage
         if (localStorage.getItem('token')) {
-            console.log(localStorage.getItem('token'));
             getNotes();
         }
         else {
             // Redirecting to login page if user is not logged in
             navigate('/');
         }
-        // eslint-disable-next-line
-    }, [])
+      
+    })
 
     // Function to handle changes in the input fields
     const onChange = (e) => {

@@ -11,7 +11,6 @@ const Home = () => {
 
     const login = useGoogleLogin({
         onSuccess: (tokenResponse) => {
-            console.log(tokenResponse);
         if (tokenResponse) {
             // If login is successful, save authToken to local storage and redirect to home page
             localStorage.setItem('token', tokenResponse);

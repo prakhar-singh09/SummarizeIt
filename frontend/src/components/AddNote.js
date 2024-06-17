@@ -1,10 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import NoteContext from "../context/Notes/noteContext";
 import alertContext from "../context/Alert/alertContext";
 import { ReactTyped } from "react-typed";
 import loader from "./assets/loader.svg";
 
 const AddNote = () => {
+    let navigate = useNavigate();
     const { addNote } = useContext(NoteContext);
     const { showAlert } = useContext(alertContext);
     const [UrlText, setUrlText] = useState({ title: "", summary: "", url: "" });
@@ -20,7 +22,12 @@ const AddNote = () => {
     const [isLoadingUrl, setIsLoadingUrl] = useState(false);
 
 
-  
+    useEffect(() => {
+        // Checking if user is logged in by checking for a token in local storage
+        if (!localStorage.getItem('token')) {
+            navigate('/');
+        }
+    });
    
 
     const onChangeUrlButton = (e) => {
@@ -66,7 +73,6 @@ const AddNote = () => {
             console.error('Error generating description:', error);
         }
     };
-
     const generateUrlSummary = async () => {
         setGeneratedTextSummary(''); 
         try {
@@ -87,6 +93,10 @@ const AddNote = () => {
             console.error('Error generating Summary:', error);
         }
     };
+
+    
+
+
     return (
         <>
         
@@ -98,7 +108,7 @@ const AddNote = () => {
                         <form>
                             <div className="my-3 material-textfield">
                                 <input
-                                    type="text"
+                                    type="url"
                                     className="form-control"
                                     id="title"
                                     name="title"
