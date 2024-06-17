@@ -1,20 +1,12 @@
-<p align="center"><img src="https://socialify.git.ci/prakhar-singh09/SummarizeIt/image?description=1&descriptionEditable=This%20is%20dual%20functionality%20App%20for%20summarizing%20content%20either%20via%20URLs%20or%20manual%20text%20input.&font=Bitter&language=1&name=1&owner=1&pattern=Circuit%20Board&theme=Dark" alt="hoolichat-api" width="640" height="320" /></p>
+<p align="center"><img src="https://socialify.git.ci/prakhar-singh09/SummarizeIt/image?description=1&descriptionEditable=This%20is%20dual%20functionality%20App%20for%20summarizing%20content%20either%20via%20URLs%20or%20manual%20text%20input.&font=Bitter&language=1&name=1&owner=1&pattern=Brick%20Wall&theme=Dark" alt="hoolichat-api" width="640" height="320" /></p>
 
 
 <h1 align="center">
    Summarizeit 📝
-   
 </h1>
 
-## ⚡Technology Stack
-
-### [ReactJS](https://react.dev/)
-### [NodeJS](https://nodejs.org/)
-### [MongoDB](https://www.mongodb.com/)
-### [Express](http://expressjs.com/)
-
-
-
+An AI-Powered Summary Generation App
+Introducing AI-Powered Platform that extracts summaries seamlessly from web URLs or manual input, into concise summaries, which users can easily save for future reference and use.
 
 ## 👨‍💻Features
 
@@ -222,6 +214,13 @@ DELETE /api/notes/deletenote/:id
 
 }
 ```
+
+## ⚡Technology Stack
+
+### [ReactJS](https://react.dev/)
+### [NodeJS](https://nodejs.org/)
+### [MongoDB](https://www.mongodb.com/)
+### [Express](http://expressjs.com/)
 
 ### Contribution
 Contributions are welcome! Feel free to submit issues or pull requests.
