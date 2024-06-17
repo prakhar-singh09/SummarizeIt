@@ -162,7 +162,7 @@ const AddNote = () => {
                                 </label>
                             </div>
                             
-                            <button type="button" disabled={InputText.title.length < 3}  className="btn btn-lg btn-outline-primary mt-2 mb-3 me-2" onClick={generateTextSummary}>
+                            <button type="button" disabled={InputText.title.length < 3 ||  InputText.text.length < 5 }  className="btn btn-lg btn-outline-primary mt-2 mb-3 me-2" onClick={generateTextSummary}>
                                 SummarizeIt✨
                             </button>
 

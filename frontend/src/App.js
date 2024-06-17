@@ -19,7 +19,7 @@ function App() {
   return (
   <AlertState>
    <NoteState>
-   <GoogleOAuthProvider clientId="823543346606-24qt6end0sl7pj9ag83r6khlab7vrksi.apps.googleusercontent.com">
+   <GoogleOAuthProvider clientId="823543346606-2ge1psp1m6nj1va8bh00lcvomjapa7if.apps.googleusercontent.com">
     <Router>
       <Navbar />
       <Alert/>
