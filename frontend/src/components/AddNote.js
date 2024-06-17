@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import NoteContext from "../context/Notes/noteContext";
 import alertContext from "../context/Alert/alertContext";
 import { ReactTyped } from "react-typed";
+import loader from "./assets/loader.svg";
 
 const AddNote = () => {
     const { addNote } = useContext(NoteContext);
@@ -10,7 +11,16 @@ const AddNote = () => {
     const [InputText, setInputText] = useState({ title: "", summary: "", text: "" });
     const [generatedUrlSummary, setGeneratedUrlSummary] = useState("");
     const [generatedTextSummary, setGeneratedTextSummary] = useState("");
+   
+    const [isFetchedText, setIsFetchedText] = useState("");
+    const [isLoadingText, setIsLoadingText] = useState(false);
 
+    
+    const [isFetchedUrl, setIsFetchedUrl] = useState("");
+    const [isLoadingUrl, setIsLoadingUrl] = useState(false);
+
+
+  
    
 
     const onChangeUrlButton = (e) => {
@@ -37,8 +47,9 @@ const AddNote = () => {
     
     const host = process.env.REACT_APP_URL;
     const generateTextSummary = async () => {
-        setGeneratedUrlSummary('');
+        setGeneratedTextSummary('');
         try {
+            setIsLoadingText(true);
             const response = await fetch(`${host}generate-summary`, {
                 method: 'POST',
                 headers: {
@@ -48,7 +59,8 @@ const AddNote = () => {
             });
     
             const data = await response.json();
-    
+            setIsLoadingText(false);
+            setIsFetchedText(data?.description);    
             setGeneratedTextSummary(data.description);
         } catch (error) {
             console.error('Error generating description:', error);
@@ -58,6 +70,7 @@ const AddNote = () => {
     const generateUrlSummary = async () => {
         setGeneratedTextSummary(''); 
         try {
+            setIsLoadingUrl(true);
             const response = await fetch(`https://article-extractor-and-summarizer.p.rapidapi.com/summarize?url=${UrlText.url}`, {
                 method: 'GET',
                 headers: {
@@ -67,6 +80,8 @@ const AddNote = () => {
             });
     
             const data = await response.json();
+            setIsLoadingUrl(false);
+            setIsFetchedUrl(data?.summary); 
             setGeneratedUrlSummary(data.summary);
         } catch (error) {
             console.error('Error generating Summary:', error);
@@ -110,7 +125,7 @@ const AddNote = () => {
                                 </label>
                             </div>
 
-                            <button type="button" disabled={UrlText.title.length < 3 || UrlText.url.length<5}  className="btn btn-lg btn-outline-primary mt-2 mb-3 me-2" onClick={generateUrlSummary}>
+                            <button type="button" disabled={UrlText.title.length < 3 || UrlText.url.length<5}  className="btn btn-lg btn-outline-success mt-2 mb-3 me-2" onClick={generateUrlSummary}>
                                 SummarizeIt✨
                             </button>
 
@@ -119,14 +134,20 @@ const AddNote = () => {
                             <button  type="submit" disabled={UrlText.title.length < 3 || UrlText.url.length < 5 || !generatedUrlSummary } className="btn btn-lg btn-outline-primary mt-2 mb-3 me-2" onClick={handleClick}>
                                 Add Summary
                             </button>
-                          
                         </form>
 
-                        {generatedUrlSummary && (
-                            <div className="alert alert-info mt-2" role="alert">
+                        {isLoadingUrl ? (
+                            <img src={loader} alt='loader' className="w-10 h-10 object-contain" />
+                        ) : isFetchedUrl === undefined ? (
+                            <p className='alert alert-danger mt-2'>
+                                Please Enter Valid URL
+                            </p>
+                        ) : (
+                        generatedUrlSummary && (
+                            <div className="alert alert-success mt-2" role="alert">
                                 <strong>Generated summary:</strong>  <ReactTyped strings={[generatedUrlSummary]} typeSpeed={5} />
                             </div>
-                        )}
+                        ))}
 
                     </div>
                     <div className="col-md-6">
@@ -162,7 +183,7 @@ const AddNote = () => {
                                 </label>
                             </div>
                             
-                            <button type="button" disabled={InputText.title.length < 3 ||  InputText.text.length < 5 }  className="btn btn-lg btn-outline-primary mt-2 mb-3 me-2" onClick={generateTextSummary}>
+                            <button type="button" disabled={InputText.title.length < 3 ||  InputText.text.length < 5 }  className="btn btn-lg btn-outline-success mt-2 mb-3 me-2" onClick={generateTextSummary}>
                                 SummarizeIt✨
                             </button>
 
@@ -171,11 +192,19 @@ const AddNote = () => {
                                 Add Summary
                             </button>
                         </form>
-                        {generatedTextSummary && (
-                            <div className="alert alert-info mt-2" role="alert">
-                                <strong>Generated summary:</strong> <ReactTyped strings={[generatedTextSummary]} typeSpeed={5} />
+
+                        {isLoadingText ? (
+                            <img src={loader} alt='loader' className="w-10 h-10 object-contain" />
+                        ) : isFetchedText === undefined ? (
+                            <p className='alert alert-danger mt-2'>
+                                Something Went Wrong Please try again later...
+                            </p>
+                        ) : (
+                          generatedTextSummary && (
+                            <div className="alert alert-success mt-2" role="alert">
+                                <strong>Generated summary:</strong> <ReactTyped strings={[generatedTextSummary]} typeSpeed={6} />
                             </div>
-                        )}
+                        ))}
 
                     </div>
                 </div>
