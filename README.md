@@ -201,17 +201,6 @@ DELETE /api/notes/deletenote/:id
 | `Content-Type` | `application/json` |
 | `auth-token` | `Your Auth token` |
 
-#### Body
-
-`Raw(json)`
-
-```
-{
-    "title":"",
-    "description":"",
-
-}
-```
 
 ## ⚡Technology Stack
 
