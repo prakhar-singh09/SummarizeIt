@@ -44,7 +44,27 @@ const Home = () => {
             clearInterval(ticker);
         };
     }, [tick, delta]);
+    
+  useEffect(() => {
+        // Chatbot Integration
+        const BASE_URL = "http://0.0.0.0:3000";
+        const script = document.createElement("script");
+        script.src = `${BASE_URL}/packs/js/sdk.js`;
+        script.defer = true;
+        script.async = true;
+        document.body.appendChild(script);
 
+        script.onload = () => {
+            window.chatwootSDK.run({
+                websiteToken: 'FmpXz4FgWtMWWRSf55EAt5br',
+                baseUrl: BASE_URL,
+            });
+        };
+
+        return () => {
+            document.body.removeChild(script); // Cleanup script when the component unmounts
+        };
+    }, []);
 
     const { showAlert } = useContext(alertContext);
     let navigate = useNavigate();
