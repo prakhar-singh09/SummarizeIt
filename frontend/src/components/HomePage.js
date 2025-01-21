@@ -47,7 +47,7 @@ const Home = () => {
     
   useEffect(() => {
         // Chatbot Integration
-        const BASE_URL = "http://0.0.0.0:3000";
+        const BASE_URL = "http://127.0.0.1:3000";
         const script = document.createElement("script");
         script.src = `${BASE_URL}/packs/js/sdk.js`;
         script.defer = true;
