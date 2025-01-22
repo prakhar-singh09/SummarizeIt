@@ -46,25 +46,32 @@ const Home = () => {
     }, [tick, delta]);
     
   useEffect(() => {
-        // Chatbot Integration
-        const BASE_URL = "http://127.0.0.1:3000";
-        const script = document.createElement("script");
-        script.src = `${BASE_URL}/packs/js/sdk.js`;
-        script.defer = true;
-        script.async = true;
-        document.body.appendChild(script);
+    const BASE_URL = "http://http://127.0.0.1:3000";
 
-        script.onload = () => {
-            window.chatwootSDK.run({
-                websiteToken: 'FmpXz4FgWtMWWRSf55EAt5br',
-                baseUrl: BASE_URL,
-            });
-        };
+    // Create the script element
+    const script = document.createElement('script');
+    script.src = `${BASE_URL}/packs/js/sdk.js`;
+    script.defer = true;
+    script.async = true;
 
-        return () => {
-            document.body.removeChild(script); // Cleanup script when the component unmounts
-        };
-    }, []);
+    // Append the script to the document
+    document.body.appendChild(script);
+
+    // Add the onload event to initialize chatwootSDK
+    script.onload = () => {
+      if (window.chatwootSDK) {
+        window.chatwootSDK.run({
+          websiteToken: 'FmpXz4FgWtMWWRSf55EAt5br',
+          baseUrl: BASE_URL,
+        });
+      }
+    };
+
+    // Cleanup the script when the component unmounts
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
     const { showAlert } = useContext(alertContext);
     let navigate = useNavigate();
