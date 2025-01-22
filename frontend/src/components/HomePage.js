@@ -46,7 +46,7 @@ const Home = () => {
     }, [tick, delta]);
     
   useEffect(() => {
-    const BASE_URL = "http://http://127.0.0.1:3000";
+    const BASE_URL = "http://127.0.0.1:3000";
 
     // Create the script element
     const script = document.createElement('script');
