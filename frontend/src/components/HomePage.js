@@ -46,7 +46,7 @@ const Home = () => {
     }, [tick, delta]);
     
   useEffect(() => {
-    const BASE_URL = "http://127.0.0.1:3000";
+    const BASE_URL = "https://cychat.cyfuture.cloud";
 
     // Create the script element
     const script = document.createElement('script');
@@ -61,7 +61,7 @@ const Home = () => {
     script.onload = () => {
       if (window.chatwootSDK) {
         window.chatwootSDK.run({
-          websiteToken: 'FmpXz4FgWtMWWRSf55EAt5br',
+          websiteToken: process.env.REACT_APP_CHATWOOT,
           baseUrl: BASE_URL,
         });
       }
