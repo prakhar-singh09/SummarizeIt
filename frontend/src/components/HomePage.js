@@ -61,7 +61,7 @@ const Home = () => {
     script.onload = () => {
       if (window.chatwootSDK) {
         window.chatwootSDK.run({
-          websiteToken: process.env.REACT_APP_CHATWOOT,
+          websiteToken: process.env.REACT_APP_URL_CHATWOOT,
           baseUrl: BASE_URL,
         });
       }
