@@ -1,0 +1,17 @@
+services:
+  backend:
+    build: ./BackEnd
+    container_name: node-backend
+    ports:
+      - "5001:5000"
+    env_file:
+      - ./BackEnd/.env
+    restart: always
+
+  frontend:
+    build: ./frontend
+    container_name: react-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend

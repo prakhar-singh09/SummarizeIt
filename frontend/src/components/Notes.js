@@ -15,17 +15,16 @@ const Notes = () => {
     const { notes, getNotes, editNote } = useContext(NoteContext);
     const [note, setNote] = useState({ id: "", etitle: "", edescription: "", etag: "" }); // State for the note being edited
 
-    useEffect(() => {
-        // Checking if user is logged in by checking for a token in local storage
-        if (localStorage.getItem('token')) {
-            getNotes();
-        }
-        else {
-            // Redirecting to login page if user is not logged in
-            navigate('/');
-        }
-      
-    })
+   const token = localStorage.getItem("token");
+
+        useEffect(() => {
+            if (token) {
+                getNotes();
+            } else {
+                navigate('/');
+            }
+        }, [token, getNotes, navigate]);
+
 
     // Function to handle changes in the input fields
     const onChange = (e) => {

@@ -27,7 +27,7 @@ const AddNote = () => {
         if (!localStorage.getItem('token')) {
             navigate('/');
         }
-    });
+    }, [navigate]);
    
 
     const onChangeUrlButton = (e) => {
@@ -57,10 +57,11 @@ const AddNote = () => {
         setGeneratedTextSummary('');
         try {
             setIsLoadingText(true);
-            const response = await fetch(`${host}generate-summary`, {
+            const response = await fetch(`${host}api/ai/generate-summary`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'auth-token': localStorage.getItem('token')
                 },
                 body: JSON.stringify({ text: InputText.text }),
             });
@@ -70,30 +71,39 @@ const AddNote = () => {
             setIsFetchedText(data?.description);    
             setGeneratedTextSummary(data.description);
         } catch (error) {
-            console.error('Error generating description:', error);
+            setIsLoadingText(false);
+            showAlert('Error generating summary. Please try again later.', error.message);
         }
     };
     const generateUrlSummary = async () => {
         setGeneratedTextSummary(''); 
-        try {
-            setIsLoadingUrl(true);
-            const response = await fetch(`https://article-extractor-and-summarizer.p.rapidapi.com/summarize?url=${UrlText.url}`, {
-                method: 'GET',
-                headers: {
-                   'x-rapidapi-key': process.env.REACT_APP_URL_RAPID_API_KEY,
-		           'x-rapidapi-host': 'article-extractor-and-summarizer.p.rapidapi.com'
-                },
-            });
-    
-            const data = await response.json();
-            setIsLoadingUrl(false);
-            setIsFetchedUrl(data?.summary); 
-            setGeneratedUrlSummary(data.summary);
-        } catch (error) {
-            console.error('Error generating Summary:', error);
-        }
-    };
 
+        
+try {
+    setIsLoadingUrl(true);
+
+    const response = await fetch(`${host}api/ai/url-summary`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        'auth-token': localStorage.getItem('token')
+      },
+      body: JSON.stringify({
+        url: UrlText.url
+      })
+    });
+
+    const data = await response.json();
+
+    setIsFetchedUrl(data?.summary);
+    setGeneratedUrlSummary(data?.summary);
+    setIsLoadingUrl(false);
+
+  } catch (error) {
+    setIsLoadingUrl(false);
+    console.error("Error generating Summary:", error);
+  }
+};
     
 
 
